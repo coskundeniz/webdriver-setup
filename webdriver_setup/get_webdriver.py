@@ -40,3 +40,13 @@ def get_webdriver_for(browser, **kwargs):
         raise ValueError(f"Invalid browser name[{browser}] specified!")
 
     return driver.get()
+
+def get_webdriver(*preferred_browsers, **kwargs):
+    first_exception = None
+    for browser in (*preferred_browsers, *("firefox chrome opera safara edge ie".split(" "))):
+        try:
+            return get_webdriver_for(browser, **kwargs)
+        except Exception as exception:
+            if first_exception is None:
+                first_exception = exception
+    raise first_exception
