@@ -23,4 +23,9 @@ class ChromeDriver(DriverBase):
 
         driver_path = ChromeDriverManager(cache_valid_range=cache_timeout).install()
 
-        return webdriver.Chrome(driver_path, **kwargs)
+        try:
+            return webdriver.Chrome(driver_path, **kwargs)
+        except:
+            options = webdriver.ChromeOptions()
+            options.add_argument('--headless')
+            return webdriver.Chrome(driver_path, options=options, **kwargs)
