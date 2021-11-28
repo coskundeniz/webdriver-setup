@@ -24,7 +24,7 @@ REQUIRED_PACKAGES = [
 
 setuptools.setup(
     name='webdriver-setup',
-    version='1.0.0',
+    version='1.1.0',
     description=('Easy to use webdriver instance creation api'),
     long_description=README,
     long_description_content_type="text/markdown",
