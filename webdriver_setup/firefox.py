@@ -23,4 +23,9 @@ class FirefoxDriver(DriverBase):
 
         driver_path = GeckoDriverManager(cache_valid_range=cache_timeout).install()
 
-        return webdriver.Firefox(executable_path=driver_path, **kwargs)
+        try:
+            return webdriver.Firefox(executable_path=driver_path, **kwargs)
+        except:
+            options = webdriver.FirefoxOptions()
+            options.add_argument('--headless')
+            return webdriver.Firefox(executable_path=driver_path, options=options, **kwargs)
